@@ -1,12 +1,9 @@
-default: all
-
-tstatus: tstatus.c
-	gcc -o $@ tstatus.c
-
-send-status: send-status.c
-	gcc -o $@ send-status.c
-
 all: tstatus send-status
 
+tstatus: tstatus.h
+send-status: tstatus.h
+
 clean:
-	rm ./tstatus ./send-status
+	rm tstatus send-status
+
+.PHONY: all clean

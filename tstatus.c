@@ -17,7 +17,7 @@ main(int argc, char **argv)
 
 	memset(&addr, 0, sizeof(struct sockaddr_un));
 	addr.sun_family = AF_UNIX;
-	strncpy(addr.sun_path, socket_path, sizeof(addr.sun_path) - 1);
+	strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path) - 1);
 
 	if ((sock_fd = socket(AF_UNIX, SOCK_DGRAM, 0)) == -1)
 	{
@@ -25,7 +25,7 @@ main(int argc, char **argv)
 		return -1;
 	}
 
-	unlink(socket_path);
+	unlink(SOCKET_PATH);
 	if (bind(sock_fd, (struct sockaddr *)&addr, sizeof(struct sockaddr_un)) == -1)
 	{
 		perror("bind error\n");
